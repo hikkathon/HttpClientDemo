@@ -32,6 +32,7 @@ namespace wfHttpClientDemo
         {
             MainForm mf = new MainForm();
             ViewHtmlForm vhtmlf = new ViewHtmlForm();
+            ViewDataGridForm vdgf = new ViewDataGridForm();
 
 
             try
@@ -43,6 +44,7 @@ namespace wfHttpClientDemo
                 vhtmlf.TextBoxViewHtml = html;
 
                 vhtmlf.Show();
+                vdgf.Show();
 
                 var htmlDoc = new HtmlAgilityPack.HtmlDocument();
                 htmlDoc.LoadHtml(html);
@@ -58,6 +60,8 @@ namespace wfHttpClientDemo
                         var poster = post.SelectSingleNode(singleNode)?.GetAttributeValue("src", "").Trim();
 
                         mf._entries.Add(new EntryModel { Number = count, PosterUrl = "https://yummyanime.club" + poster });
+
+                        vdgf.dataGridViewURL.Rows.Add(count, "https://yummyanime.club" + poster);
                     }
                 }
                 catch (NullReferenceException exc)
@@ -91,11 +95,11 @@ namespace wfHttpClientDemo
         {
             using (var httpClient = new HttpClient())
             {
+                //System.Threading.Thread.Sleep(10000);
                 httpClient.DefaultRequestHeaders.TryAddWithoutValidation("User-Agent", "https://yummyanime.club/users/id13222");
 
                 await GetContent(httpClient, textBoxSiteUrl.Text, textBoxNodes.Text, textBoxSingleNode.Text);
-                //System.Threading.Thread.Sleep(4000);
-            }
+            }            
         }
 
         private void buttonfillsa_Click(object sender, EventArgs e)
@@ -115,10 +119,7 @@ namespace wfHttpClientDemo
 
         private void buttonShowData_Click(object sender, EventArgs e)
         {
-            foreach (var entries in Entries)
-            {
-                dataGridViewUrlImage.Rows.Add(entries.Number, entries.PosterUrl);
-            }
+
         }
     }
 }

@@ -58,6 +58,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewDataGridForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewDataGridForm.Designer.cs">
+      <DependentUpon>ViewDataGridForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewHtmlForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +88,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ViewDataGridForm.resx">
+      <DependentUpon>ViewDataGridForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ViewHtmlForm.resx">
       <DependentUpon>ViewHtmlForm.cs</DependentUpon>
     </EmbeddedResource>
